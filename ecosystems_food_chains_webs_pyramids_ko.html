@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecosystems — Food Chains, Food Webs, Factors, Habitats, Pyramids</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f5f5f3;color:#1a1a1a;font-size:15px;line-height:1.6}
+.app{max-width:900px;margin:0 auto;padding:1.5rem 1rem 3rem}
+h1{font-size:22px;font-weight:600;margin-bottom:4px}
+h3{font-size:14px;font-weight:600;margin-bottom:6px}
+.subtitle{font-size:13px;color:#666;margin-bottom:20px}
+
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.nb{padding:7px 14px;font-size:13px;border:1px solid #ccc;border-radius:8px;background:#fff;color:#555;cursor:pointer;font-family:inherit}
+.nb:hover{background:#f0f0f0}
+.nb.on{background:#1a56db;color:#fff;border-color:#1a56db}
+
+.pg{display:none}.pg.on{display:block}
+
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1rem 1.2rem;margin-bottom:12px}
+.c-green{border-left:4px solid #22c55e}
+.c-teal{border-left:4px solid #14b8a6}
+.c-blue{border-left:4px solid #3b82f6}
+.c-purple{border-left:4px solid #8b5cf6}
+.c-amber{border-left:4px solid #f59e0b}
+.c-red{border-left:4px solid #ef4444}
+.c-coral{border-left:4px solid #f97316}
+.c-pink{border-left:4px solid #ec4899}
+.c-lime{border-left:4px solid #84cc16}
+.c-indigo{border-left:4px solid #6366f1}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+.bdg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:12px;font-weight:600;margin-bottom:7px}
+.b-green{background:#dcfce7;color:#166534}
+.b-teal{background:#ccfbf1;color:#0f766e}
+.b-blue{background:#dbeafe;color:#1e40af}
+.b-purple{background:#ede9fe;color:#6d28d9}
+.b-amber{background:#fef3c7;color:#92400e}
+.b-red{background:#fee2e2;color:#991b1b}
+.b-coral{background:#ffedd5;color:#9a3412}
+.b-pink{background:#fce7f3;color:#9d174d}
+.b-lime{background:#f7fee7;color:#3f6212}
+.b-indigo{background:#e0e7ff;color:#3730a3}
+
+.fbox{background:#f3f4f6;border-radius:8px;padding:9px 14px;font-size:15px;font-weight:700;text-align:center;margin:8px 0}
+
+.row{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid #f0f0f0}
+.row:last-child{border-bottom:none}
+.tm{font-weight:600;font-size:13px;min-width:155px;flex-shrink:0}
+.df{font-size:13px;color:#444;line-height:1.5}
+
+.st{font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px;margin-top:18px}
+.divider{border:none;border-top:3px solid #e0e0e0;margin:26px 0}
+
+.topic-banner{border-radius:10px;padding:9px 16px;font-size:14px;font-weight:700;color:#fff;margin:22px 0 14px;display:flex;align-items:center;gap:8px}
+.tb-green{background:#166534}
+.tb-teal{background:#0f766e}
+.tb-blue{background:#1e40af}
+.tb-purple{background:#6d28d9}
+.tb-amber{background:#92400e}
+.tb-coral{background:#9a3412}
+.tb-lime{background:#3f6212}
+.tb-indigo{background:#3730a3}
+
+.warn{background:#fee2e2;border-left:4px solid #ef4444;border-radius:0 8px 8px 0;padding:8px 13px;font-size:13px;color:#991b1b;margin-top:9px;line-height:1.5}
+.info{background:#dbeafe;border-left:4px solid #3b82f6;border-radius:0 8px 8px 0;padding:8px 13px;font-size:13px;color:#1e40af;margin-top:9px;line-height:1.5}
+.success{background:#dcfce7;border-left:4px solid #22c55e;border-radius:0 8px 8px 0;padding:8px 13px;font-size:13px;color:#166534;margin-top:9px;line-height:1.5}
+.amber-box{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:8px 13px;font-size:13px;color:#92400e;margin-top:9px;line-height:1.5}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 10px;font-weight:600;border-bottom:2px solid #e0e0e0;background:#f9f9f9}
+td{padding:7px 10px;border-bottom:1px solid #f0f0f0;vertical-align:top}
+tr:last-child td{border-bottom:none}
+
+/* food web */
+.food-web{background:#f9f9f9;border:1px solid #e0e0e0;border-radius:10px;padding:14px;margin:10px 0}
+.fw-row{display:flex;justify-content:center;gap:16px;align-items:center;margin:6px 0;flex-wrap:wrap}
+.org{background:#fff;border:2px solid #22c55e;border-radius:8px;padding:5px 12px;font-size:13px;font-weight:600;color:#166534;white-space:nowrap}
+.org-p{border-color:#3b82f6;color:#1e40af}
+.org-h{border-color:#f59e0b;color:#92400e}
+.org-c{border-color:#ef4444;color:#991b1b}
+.org-d{border-color:#8b5cf6;color:#6d28d9}
+.arrow{font-size:18px;color:#888;font-weight:700}
+
+/* pyramids */
+.pyramid-wrap{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.pyramid{text-align:center}
+.pyramid-title{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:8px}
+.pyr-level{margin:2px auto;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff}
+
+/* SELF ASSESSMENT */
+.si{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1rem 1.2rem;margin-bottom:10px}
+.ss{font-size:14px;margin-bottom:11px;line-height:1.55}
+.sbs{display:flex;gap:8px;flex-wrap:wrap}
+.sb{padding:7px 18px;font-size:13px;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;color:#555;cursor:pointer;font-family:inherit;font-weight:500}
+.sb:hover{background:#f0f0f0}
+.sg{background:#16a34a;color:#fff;border-color:#16a34a}
+.sam{background:#d97706;color:#fff;border-color:#d97706}
+.sr{background:#dc2626;color:#fff;border-color:#dc2626}
+
+/* DIAGNOSTIC */
+.qb{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1rem 1.2rem;margin-bottom:14px}
+.qt{font-size:14px;margin-bottom:12px;line-height:1.55}
+.ob{display:block;width:100%;text-align:left;padding:8px 14px;margin-bottom:6px;font-size:13px;border:1px solid #ddd;border-radius:8px;background:#f9f9f9;color:#1a1a1a;cursor:pointer;font-family:inherit}
+.ob:hover:not(:disabled){background:#f0f0f0}
+.ob:disabled{cursor:default}
+.oc{background:#dcfce7;color:#166534;border-color:#22c55e;font-weight:600}
+.ow{background:#fee2e2;color:#991b1b;border-color:#ef4444}
+.orc{background:#dcfce7;color:#166534;border-color:#22c55e}
+.fb{font-size:13px;margin-top:8px;padding:8px 12px;border-radius:8px;line-height:1.5;display:none}
+.fb.on{display:block}
+.fbc{background:#dcfce7;color:#166534}
+.fbw{background:#fee2e2;color:#991b1b}
+
+/* FOLLOW-UP */
+.ci{width:100%;padding:8px 12px;font-size:14px;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;margin:8px 0;font-family:inherit}
+.ci:focus{outline:2px solid #3b82f6;border-color:#3b82f6}
+.ckb{padding:8px 20px;font-size:13px;border:1px solid #ccc;border-radius:8px;background:#f9f9f9;color:#1a1a1a;cursor:pointer;font-family:inherit;font-weight:500}
+.ckb:hover{background:#f0f0f0}
+
+.ab{padding:10px 26px;font-size:14px;border:none;border-radius:8px;background:#1a56db;color:#fff;cursor:pointer;font-family:inherit;font-weight:600}
+.ab:hover{background:#1e40af}
+
+/* SUMMARY */
+.tr2{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f0f0f0;flex-wrap:wrap;gap:6px}
+.tr2:last-child{border-bottom:none}
+.pill{padding:3px 11px;border-radius:20px;font-size:12px;font-weight:600}
+.pig{background:#dcfce7;color:#166534}
+.pia{background:#fef3c7;color:#92400e}
+.pir{background:#fee2e2;color:#991b1b}
+.stat-card{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1rem;text-align:center}
+.stat-label{font-size:12px;color:#888;margin-bottom:6px}
+.stat-val{font-size:24px;font-weight:700}
+
+@media(max-width:600px){.g2,.g3{grid-template-columns:1fr}.fw-row{gap:8px}.pyramid-wrap{flex-direction:column;align-items:center}}
+@media print{.nav,.ab{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="nav">
+  <button class="nb on" onclick="sp('ko')">Knowledge Organiser</button>
+  <button class="nb" onclick="sp('sa')">Self-Assessment</button>
+  <button class="nb" onclick="sp('dq')">Diagnostic Questions</button>
+  <button class="nb" onclick="sp('fu')">Follow-Up Questions</button>
+  <button class="nb" onclick="bs();sp('sm')">My Summary</button>
+</div>
+
+<!-- ══════════════════════════ KNOWLEDGE ORGANISER ══════════════ -->
+<div class="pg on" id="pg-ko">
+<h1>Ecosystems — Food Chains, Food Webs, Factors &amp; Pyramids</h1>
+<p class="subtitle">GCSE Biology · Ecosystems · Interdependence · Ecological Relationships</p>
+
+<!-- ─── 1. ECOSYSTEMS & HABITATS ─── -->
+<div class="topic-banner tb-green">1 · Ecosystems &amp; Habitats</div>
+
+<div class="card c-green">
+  <span class="bdg b-green">Key definitions</span>
+  <div class="g2" style="margin-top:6px">
+    <div>
+      <div class="row"><span class="tm">Ecosystem</span><span class="df">All the living organisms in an area together with their non-living environment, and the interactions between them.</span></div>
+      <div class="row"><span class="tm">Habitat</span><span class="df">The place where an organism lives. Provides food, shelter, water and space for reproduction.</span></div>
+      <div class="row"><span class="tm">Population</span><span class="df">All the individuals of one species living in a habitat at the same time.</span></div>
+      <div class="row"><span class="tm">Community</span><span class="df">All the populations of different species living and interacting in a habitat at the same time.</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="tm">Species</span><span class="df">A group of organisms that can breed together to produce fertile offspring.</span></div>
+      <div class="row"><span class="tm">Niche</span><span class="df">The role of an organism in its ecosystem — what it eats, where it lives, when it is active, and how it interacts with other organisms.</span></div>
+      <div class="row"><span class="tm">Biodiversity</span><span class="df">The variety of different species in an ecosystem. High biodiversity = more stable ecosystem.</span></div>
+      <div class="row"><span class="tm">Adaptation</span><span class="df">A feature of an organism that makes it better suited to survive and reproduce in its environment.</span></div>
+    </div>
+  </div>
+  <div class="success" style="margin-top:10px">Ecosystem → Community → Population → Individual organism. These are the levels of ecological organisation from largest to smallest.</div>
+</div>
+
+<hr class="divider">
+<!-- ─── 2. BIOTIC & ABIOTIC FACTORS ─── -->
+<div class="topic-banner tb-teal">2 · Biotic &amp; Abiotic Factors</div>
+
+<div class="card c-teal">
+  <div class="g2">
+    <div>
+      <span class="bdg b-teal">Biotic factors</span>
+      <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:8px"><strong>Living</strong> factors that affect organisms in an ecosystem.</p>
+      <div class="row"><span class="tm">Predation</span><span class="df">Predators eating prey — reduces prey population, affects predator numbers.</span></div>
+      <div class="row"><span class="tm">Competition</span><span class="df">Organisms competing for the same limited resources (food, water, mates, territory, light).</span></div>
+      <div class="row"><span class="tm">Disease</span><span class="df">Pathogens reduce population size; can spread rapidly through dense populations.</span></div>
+      <div class="row"><span class="tm">Parasitism</span><span class="df">One organism benefits (parasite) at the expense of another (host).</span></div>
+      <div class="row"><span class="tm">Mutualism</span><span class="df">Both organisms benefit from the relationship (e.g. cleaner fish and sharks).</span></div>
+      <div class="row"><span class="tm">Food availability</span><span class="df">Affects population size — fewer resources → smaller population.</span></div>
+    </div>
+    <div>
+      <span class="bdg b-blue">Abiotic factors</span>
+      <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:8px"><strong>Non-living</strong> (physical and chemical) factors that affect organisms.</p>
+      <div class="row"><span class="tm">Light intensity</span><span class="df">Affects rate of photosynthesis — essential for plants and algae.</span></div>
+      <div class="row"><span class="tm">Temperature</span><span class="df">Affects enzyme activity, metabolic rates and distribution of species.</span></div>
+      <div class="row"><span class="tm">Water / rainfall</span><span class="df">Essential for life; affects distribution of plants and animals.</span></div>
+      <div class="row"><span class="tm">Humidity</span><span class="df">Affects water loss from organisms; important for transpiration.</span></div>
+      <div class="row"><span class="tm">Soil pH / minerals</span><span class="df">Affects plant growth; different plants thrive at different pH levels.</span></div>
+      <div class="row"><span class="tm">Carbon dioxide level</span><span class="df">Affects rate of photosynthesis in plants.</span></div>
+      <div class="row"><span class="tm">Wind speed</span><span class="df">Affects evaporation and transpiration; shapes plant growth.</span></div>
+      <div class="row"><span class="tm">Oxygen level</span><span class="df">Critical for aquatic organisms; affects decomposition rates.</span></div>
+    </div>
+  </div>
+  <div class="warn" style="margin-top:10px">⚠ Biotic = <strong>B</strong>iological (living). Abiotic = <strong>A</strong>bsence of life (non-living). A common exam error is confusing the two — always check whether the factor is a living organism or a physical/chemical condition.</div>
+</div>
+
+<hr class="divider">
+<!-- ─── 3. FOOD CHAINS ─── -->
+<div class="topic-banner tb-lime">3 · Food Chains</div>
+
+<div class="card c-lime">
+  <span class="bdg b-lime">Food chains — key rules</span>
+  <div class="g2" style="margin-top:8px">
+    <div>
+      <div class="row"><span class="tm">Producer</span><span class="df">Always the start of the chain. Green plants / algae that make food by photosynthesis. Also called autotrophs.</span></div>
+      <div class="row"><span class="tm">Primary consumer</span><span class="df">Eats the producer. Herbivore. First trophic level after producers.</span></div>
+      <div class="row"><span class="tm">Secondary consumer</span><span class="df">Eats the primary consumer. Often a carnivore or omnivore.</span></div>
+      <div class="row"><span class="tm">Tertiary consumer</span><span class="df">Eats the secondary consumer. Top predator in many chains.</span></div>
+      <div class="row"><span class="tm">Decomposer</span><span class="df">Bacteria and fungi that break down dead organisms. Return nutrients to soil. Essential for cycling.</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="tm">Arrow direction</span><span class="df">Arrows show direction of <strong>energy flow</strong>, not "what eats what". Arrow points FROM food TO feeder: Grass → Rabbit → Fox.</span></div>
+      <div class="row"><span class="tm">Trophic level</span><span class="df">The position of an organism in the food chain. Producers = level 1; primary consumers = level 2; etc.</span></div>
+      <div class="row"><span class="tm">Energy transfer</span><span class="df">Only ~10% of energy is transferred between trophic levels. 90% is lost as heat, movement, excretion, and uneaten parts.</span></div>
+      <div class="row"><span class="tm">Herbivore</span><span class="df">Eats only plants. Carnivore: eats only animals. Omnivore: eats both.</span></div>
+    </div>
+  </div>
+  <div class="info" style="margin-top:10px">Example food chain: <strong>Grass → Grasshopper → Frog → Snake → Hawk</strong><br>Grass (producer) → Grasshopper (primary consumer) → Frog (secondary consumer) → Snake (tertiary consumer) → Hawk (quaternary consumer)</div>
+</div>
+
+<hr class="divider">
+<!-- ─── 4. FOOD WEBS ─── -->
+<div class="topic-banner tb-blue">4 · Food Webs</div>
+
+<div class="card c-blue">
+  <span class="bdg b-blue">What is a food web?</span>
+  <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:10px">A <strong>food web</strong> shows all the feeding relationships in an ecosystem — it is a network of interconnected food chains. Most organisms eat more than one type of food and are eaten by more than one type of predator, so food webs are more realistic than single food chains.</p>
+  <div class="food-web">
+    <div style="font-size:12px;font-weight:700;color:#666;text-align:center;margin-bottom:8px">Example Food Web</div>
+    <div class="fw-row">
+      <div class="org org-c">Hawk</div>
+      <div class="org org-c">Owl</div>
+    </div>
+    <div class="fw-row"><div class="arrow">↑</div><div class="arrow">↑</div></div>
+    <div class="fw-row">
+      <div class="org org-h">Rabbit</div>
+      <div class="org org-h">Vole</div>
+      <div class="org org-h">Mouse</div>
+    </div>
+    <div class="fw-row"><div class="arrow">↑</div><div class="arrow">↑</div><div class="arrow">↑</div></div>
+    <div class="fw-row">
+      <div class="org org-p">Grass</div>
+      <div class="org org-p">Berries</div>
+      <div class="org org-p">Seeds</div>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;margin-top:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#1e40af">■ Producers</span>
+      <span style="font-size:12px;color:#92400e">■ Primary consumers</span>
+      <span style="font-size:12px;color:#991b1b">■ Secondary consumers</span>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:12px">
+    <div>
+      <h3 style="margin-bottom:8px">Interpreting food webs</h3>
+      <div class="row"><span class="tm">Removing a species</span><span class="df">Can cause a cascade — prey population rises; predator population falls. Knock-on effects throughout the web.</span></div>
+      <div class="row"><span class="tm">Adding a species</span><span class="df">May outcompete existing species; alter population sizes throughout the web.</span></div>
+      <div class="row"><span class="tm">Increasing a species</span><span class="df">Its prey is eaten more → prey decreases; its predators have more food → increase.</span></div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:8px">Food web advantages over food chains</h3>
+      <ul style="font-size:13px;color:#444;margin-left:16px;line-height:1.8">
+        <li>More realistic — shows multiple feeding relationships</li>
+        <li>Shows how a change in one population affects many others</li>
+        <li>Shows which species are <em>keystone</em> species (critical to web stability)</li>
+        <li>Illustrates competition between species at the same level</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+<!-- ─── 5. INTERDEPENDENCE ─── -->
+<div class="topic-banner tb-purple">5 · Interdependence</div>
+
+<div class="card c-purple">
+  <span class="bdg b-purple">Interdependence</span>
+  <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:10px">All organisms in an ecosystem <strong>depend on each other</strong> in some way. Changes to one population cause knock-on effects throughout the entire community. This is called interdependence.</p>
+  <div class="g2">
+    <div>
+      <h3 style="margin-bottom:8px">Types of relationships</h3>
+      <div class="row"><span class="tm">Predator-prey</span><span class="df">Predator and prey populations are linked — as prey increases, predator increases; then prey decreases as predated more → predator falls → prey recovers. Cyclical relationship.</span></div>
+      <div class="row"><span class="tm">Competition</span><span class="df">Intraspecific (same species) or interspecific (different species) competition for food, water, space, mates or light.</span></div>
+      <div class="row"><span class="tm">Mutualism</span><span class="df">Both organisms benefit. Example: bees pollinate flowers; flowers provide nectar. Nitrogen-fixing bacteria in plant roots.</span></div>
+      <div class="row"><span class="tm">Parasitism</span><span class="df">Parasite benefits; host is harmed. Tapeworms in intestines; fleas on mammals; mistletoe on trees.</span></div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:8px">Predator-prey cycle</h3>
+      <div style="background:#f9f9f9;border:1px solid #e0e0e0;border-radius:8px;padding:10px;font-size:13px;color:#444;line-height:1.8">
+        <p><strong>1.</strong> Prey population increases → more food for predators</p>
+        <p><strong>2.</strong> Predator population increases → more predation</p>
+        <p><strong>3.</strong> Prey population decreases (overpredated)</p>
+        <p><strong>4.</strong> Less food → predator population decreases</p>
+        <p><strong>5.</strong> Less predation → prey population recovers → cycle repeats</p>
+      </div>
+      <div class="success" style="margin-top:8px">On a graph: the predator curve follows (lags behind) the prey curve. Predator peaks slightly after prey peaks.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+<!-- ─── 6. PYRAMIDS OF NUMBERS ─── -->
+<div class="topic-banner tb-amber">6 · Pyramids of Numbers</div>
+
+<div class="card c-amber">
+  <span class="bdg b-amber">Pyramid of numbers</span>
+  <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">Shows the <strong>number of organisms</strong> at each trophic level in a food chain. Each bar represents a trophic level; the width represents the number of organisms at that level.</p>
+  <div class="pyramid-wrap">
+    <div class="pyramid">
+      <div class="pyramid-title">Typical pyramid<br>(most food chains)</div>
+      <div class="pyr-level" style="width:60px;background:#ef4444;height:28px">Fox (2)</div>
+      <div class="pyr-level" style="width:110px;background:#f97316;height:28px">Rabbit (50)</div>
+      <div class="pyr-level" style="width:170px;background:#22c55e;height:28px">Grass (10 000)</div>
+    </div>
+    <div class="pyramid">
+      <div class="pyramid-title">Inverted pyramid<br>(parasitic chain)</div>
+      <div class="pyr-level" style="width:180px;background:#8b5cf6;height:28px">Fleas (1000s)</div>
+      <div class="pyr-level" style="width:100px;background:#3b82f6;height:28px">Rabbits (10s)</div>
+      <div class="pyr-level" style="width:40px;background:#22c55e;height:28px">Oak (1)</div>
+    </div>
+    <div class="pyramid">
+      <div class="pyramid-title">Unusual shape<br>(large producer)</div>
+      <div class="pyr-level" style="width:60px;background:#ef4444;height:28px">Birds (few)</div>
+      <div class="pyr-level" style="width:120px;background:#f97316;height:28px">Insects (many)</div>
+      <div class="pyr-level" style="width:50px;background:#22c55e;height:28px">Oak tree (1)</div>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:10px">
+    <div>
+      <h3 style="margin-bottom:6px">Advantages</h3>
+      <ul style="font-size:13px;color:#444;margin-left:16px;line-height:1.8">
+        <li>Easy to construct — just count organisms</li>
+        <li>Shows feeding relationships clearly</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:6px">Disadvantages</h3>
+      <ul style="font-size:13px;color:#444;margin-left:16px;line-height:1.8">
+        <li>Does not account for organism size — one large tree vs millions of grass plants</li>
+        <li>Can be inverted (e.g. parasitic chains, or one large producer)</li>
+        <li>Does not show energy or biomass transferred</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warn" style="margin-top:10px">Pyramids of numbers can be <strong>inverted</strong> (wider at top) when one large producer supports many consumers, or in a parasitic food chain. This is the main weakness of using numbers rather than biomass.</div>
+</div>
+
+<hr class="divider">
+<!-- ─── 7. PYRAMIDS OF BIOMASS ─── -->
+<div class="topic-banner tb-coral">7 · Pyramids of Biomass</div>
+
+<div class="card c-coral">
+  <span class="bdg b-coral">Pyramid of biomass</span>
+  <p style="font-size:13px;color:#444;line-height:1.6;margin-bottom:12px">Shows the <strong>total mass of organisms</strong> (dry mass or fresh mass) at each trophic level. Always (or almost always) a true pyramid shape — wider at base — because energy and biomass are lost at each trophic level.</p>
+  <div class="pyramid-wrap">
+    <div class="pyramid">
+      <div class="pyramid-title">Pyramid of biomass<br>(always true pyramid)</div>
+      <div class="pyr-level" style="width:50px;background:#ef4444;height:28px;font-size:10px">10 kg</div>
+      <div class="pyr-level" style="width:100px;background:#f97316;height:28px;font-size:10px">100 kg</div>
+      <div class="pyr-level" style="width:175px;background:#22c55e;height:28px;font-size:10px">1000 kg</div>
+    </div>
+    <div class="pyramid">
+      <div class="pyramid-title">Why biomass decreases<br>at each level</div>
+      <div style="background:#f9f9f9;border:1px solid #e0e0e0;border-radius:8px;padding:10px;font-size:13px;color:#444;line-height:1.8;text-align:left;width:200px">
+        <p>Energy lost as:</p>
+        <p>• <strong>Heat</strong> from respiration</p>
+        <p>• <strong>Movement</strong></p>
+        <p>• <strong>Excretion</strong> (urine/faeces)</p>
+        <p>• <strong>Uneaten parts</strong></p>
+        <p>Only ~10% of energy passes to next level.</p>
+      </div>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:12px">
+    <div>
+      <h3 style="margin-bottom:8px">Comparing pyramids</h3>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th></th><th>Numbers</th><th>Biomass</th></tr></thead>
+        <tbody>
+          <tr><td>What it shows</td><td>Count of organisms</td><td>Total mass of organisms</td></tr>
+          <tr><td>Shape</td><td>Can be inverted</td><td>Almost always true pyramid</td></tr>
+          <tr><td>Accounts for size?</td><td>No</td><td>Yes</td></tr>
+          <tr><td>More accurate?</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Difficulty</td><td>Easier to collect data</td><td>Harder — need to measure mass</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:8px">Energy efficiency</h3>
+      <div class="fbox">% efficiency = (energy out ÷ energy in) × 100</div>
+      <p style="font-size:13px;color:#444;line-height:1.6;margin-top:8px">Typically only <strong>10%</strong> of energy is transferred from one trophic level to the next. This is why food chains rarely have more than 4 or 5 levels — there is too little energy left to support another level.</p>
+      <div class="info" style="margin-top:6px">Shorter food chains are more energy efficient. Eating plants directly is more efficient than eating animals that ate plants.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+<!-- ─── 8. SAMPLING & MEASURING POPULATIONS ─── -->
+<div class="topic-banner tb-indigo">8 · Sampling &amp; Measuring Populations</div>
+
+<div class="card c-indigo">
+  <div class="g2">
+    <div>
+      <span class="bdg b-indigo">Key sampling methods</span>
+      <div class="row"><span class="tm">Quadrat</span><span class="df">Square frame placed randomly in habitat. Count organisms inside. Use random number tables to place. Calculate mean per m².</span></div>
+      <div class="row"><span class="tm">Transect</span><span class="df">Line across habitat — place quadrats at intervals along line. Shows how species distribution changes across a gradient (e.g. shore, woodland edge).</span></div>
+      <div class="row"><span class="tm">Capture-recapture</span><span class="df">Catch, mark, release animals. Recatch later. Estimate population using Lincoln Index: N = (n₁ × n₂) ÷ m</span></div>
+    </div>
+    <div>
+      <span class="bdg b-indigo">Capture-recapture formula</span>
+      <div class="fbox" style="font-size:14px">N = (n₁ × n₂) ÷ m</div>
+      <div class="row"><span class="tm">N</span><span class="df">Estimated population size</span></div>
+      <div class="row"><span class="tm">n₁</span><span class="df">Number caught and marked in first sample</span></div>
+      <div class="row"><span class="tm">n₂</span><span class="df">Total number caught in second sample</span></div>
+      <div class="row"><span class="tm">m</span><span class="df">Number of marked individuals in second sample</span></div>
+      <div class="warn" style="margin-top:6px">Assumes: marks don't affect survival; population is closed (no immigration/emigration); marks don't come off; random mixing occurs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="st">Key vocabulary summary</div>
+<div class="card">
+  <div class="g2">
+    <div>
+      <div class="row"><span class="tm">Autotroph</span><span class="df">Organism that makes its own food (producer). Uses photosynthesis.</span></div>
+      <div class="row"><span class="tm">Heterotroph</span><span class="df">Organism that must consume other organisms for energy (consumer).</span></div>
+      <div class="row"><span class="tm">Decomposer</span><span class="df">Breaks down dead organic matter. Bacteria and fungi.</span></div>
+      <div class="row"><span class="tm">Trophic level</span><span class="df">Position in food chain. Level 1 = producer.</span></div>
+    </div>
+    <div>
+      <div class="row"><span class="tm">Biomass</span><span class="df">Total mass of organisms at a trophic level (usually dry mass).</span></div>
+      <div class="row"><span class="tm">Competition</span><span class="df">Struggle for limited resources. Intra = same species; Inter = different species.</span></div>
+      <div class="row"><span class="tm">Carrying capacity</span><span class="df">Maximum population size an environment can support given available resources.</span></div>
+      <div class="row"><span class="tm">Limiting factor</span><span class="df">Factor that restricts population growth (food, space, light, water).</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:24px">
+  <button class="ab" onclick="sp('sa')">Go to Self-Assessment →</button>
+</div>
+</div>
+
+<!-- ══════════════════════════ SELF ASSESSMENT ══════════════════ -->
+<div class="pg" id="pg-sa">
+<h1>Self-Assessment</h1>
+<p class="subtitle">Rate your confidence honestly: Green = confident · Amber = unsure · Red = not yet learned</p>
+<div id="sa-wrap"></div>
+<div style="text-align:center;margin-top:18px">
+  <button class="ab" onclick="sp('dq')">Diagnostic Questions →</button>
+</div>
+</div>
+
+<!-- ══════════════════════════ DIAGNOSTIC ════════════════════════ -->
+<div class="pg" id="pg-dq">
+<h1>Diagnostic Questions</h1>
+<p class="subtitle">Select your answer for instant feedback and a full explanation. 18 questions across all topics.</p>
+<div id="dq-wrap"></div>
+<div style="text-align:center;margin-top:18px">
+  <button class="ab" onclick="sp('fu')">Follow-Up Questions →</button>
+</div>
+</div>
+
+<!-- ══════════════════════════ FOLLOW-UP QUESTIONS ══════════════ -->
+<div class="pg" id="pg-fu">
+<h1>Follow-Up Questions</h1>
+<p class="subtitle">Longer-answer and application questions — type key words from your answer, then check the model answer.</p>
+<div id="fu-wrap"></div>
+<div style="text-align:center;margin-top:18px">
+  <button class="ab" onclick="bs();sp('sm')">View My Summary →</button>
+</div>
+</div>
+
+<!-- ══════════════════════════ SUMMARY ═══════════════════════════ -->
+<div class="pg" id="pg-sm">
+<h1>My Summary</h1>
+<p class="subtitle">Your personalised performance breakdown across all topic areas</p>
+<div id="sm-wrap"></div>
+</div>
+
+</div>
+
+<script>
+var SA=[
+  {id:'s1',tp:'Ecosystems & Habitats',tx:'I can define ecosystem, habitat, population, community and species and explain how they relate to one another.'},
+  {id:'s2',tp:'Ecosystems & Habitats',tx:'I can explain what a niche is and give an example of two organisms competing for the same niche.'},
+  {id:'s3',tp:'Biotic Factors',tx:'I can list at least five biotic factors and explain how each can affect populations in an ecosystem.'},
+  {id:'s4',tp:'Abiotic Factors',tx:'I can list at least five abiotic factors and explain how each affects the distribution and size of populations.'},
+  {id:'s5',tp:'Biotic vs Abiotic',tx:'I can correctly classify examples as biotic or abiotic factors and explain the difference between them.'},
+  {id:'s6',tp:'Food Chains',tx:'I can construct a food chain using correct arrow direction (showing energy flow) and label producers, primary, secondary and tertiary consumers.'},
+  {id:'s7',tp:'Food Chains',tx:'I can identify trophic levels and explain that only ~10% of energy is transferred between each level.'},
+  {id:'s8',tp:'Food Webs',tx:'I can interpret a food web and predict the effect of removing or increasing one species on other populations in the web.'},
+  {id:'s9',tp:'Food Webs',tx:'I can explain why food webs are more realistic than single food chains and what they show about feeding relationships.'},
+  {id:'s10',tp:'Interdependence',tx:'I can describe the predator-prey relationship and explain the cyclical changes in population size, including why predator peaks lag behind prey peaks.'},
+  {id:'s11',tp:'Interdependence',tx:'I can distinguish between mutualism, parasitism, competition and predation, and give an example of each.'},
+  {id:'s12',tp:'Pyramid of Numbers',tx:'I can construct and interpret a pyramid of numbers, and explain when it can be inverted and why.'},
+  {id:'s13',tp:'Pyramid of Numbers',tx:'I can state the limitations of pyramids of numbers (do not account for organism size; can be inverted).'},
+  {id:'s14',tp:'Pyramid of Biomass',tx:'I can construct and interpret a pyramid of biomass and explain why it is almost always a true pyramid shape.'},
+  {id:'s15',tp:'Pyramid of Biomass',tx:'I can explain why biomass decreases at each trophic level (heat from respiration, movement, excretion, uneaten parts) and why only ~10% is transferred.'},
+  {id:'s16',tp:'Pyramid of Biomass',tx:'I can compare pyramids of numbers and biomass — advantages, disadvantages and when each is preferred.'},
+  {id:'s17',tp:'Sampling',tx:'I can describe the quadrat and transect methods for sampling plant populations and explain how to calculate population estimates.'},
+  {id:'s18',tp:'Sampling',tx:'I can apply the capture-recapture formula (N = n₁ × n₂ ÷ m) and state the assumptions that must hold for it to be valid.'}
+];
+
+var DQ=[
+  {id:'d1',tp:'Ecosystems & Habitats',
+   q:'Which correctly describes a community?',
+   os:['All individuals of one species in a habitat','All the non-living factors in an ecosystem','All populations of different species living and interacting in a habitat','The physical place where an organism lives'],
+   c:2,ex:'A community is all the populations of all the different species living and interacting in a habitat at the same time. A population is all individuals of ONE species. A habitat is the physical place. The ecosystem includes both living and non-living components.'},
+  {id:'d2',tp:'Biotic vs Abiotic',
+   q:'Which of the following is a BIOTIC factor?',
+   os:['Temperature','Rainfall','Soil pH','Predation by foxes'],
+   c:3,ex:'Biotic factors are LIVING factors. Predation by foxes is a biotic factor because it involves a living organism (fox) affecting a population. Temperature, rainfall and soil pH are abiotic (non-living/physical/chemical) factors.'},
+  {id:'d3',tp:'Abiotic Factors',
+   q:'In a woodland ecosystem, which abiotic factor most limits the growth of plants on the forest floor?',
+   os:['Competition from other plants','Predation by rabbits','Low light intensity due to the tree canopy','High soil pH'],
+   c:2,ex:'Light intensity is an abiotic factor. The tree canopy blocks much of the sunlight from reaching the forest floor, reducing the rate of photosynthesis for plants growing below. This is a key limiting abiotic factor in woodland ecosystems.'},
+  {id:'d4',tp:'Food Chains',
+   q:'In a food chain, what does the arrow represent?',
+   os:['What eats what','The direction of movement of organisms','The direction of energy flow (from food to feeder)','The direction of water movement'],
+   c:2,ex:'In a food chain, arrows show the direction of ENERGY FLOW — from the organism being eaten to the organism doing the eating. So Grass → Rabbit means energy passes FROM grass TO rabbit.'},
+  {id:'d5',tp:'Food Chains',
+   q:'In the food chain: Grass → Rabbit → Fox → Flea. What trophic level is the fox?',
+   os:['Trophic level 1','Trophic level 2','Trophic level 3','Trophic level 4'],
+   c:2,ex:'Grass = trophic level 1 (producer). Rabbit = level 2 (primary consumer). Fox = level 3 (secondary consumer). Flea = level 4 (tertiary consumer). Count the steps from the producer.'},
+  {id:'d6',tp:'Food Chains — energy',
+   q:'Why are there rarely more than four or five trophic levels in a food chain?',
+   os:['There are not enough different species','Organisms at higher levels eat too much','Only about 10% of energy is transferred to the next trophic level, so too little energy remains to support more levels','Predators cannot digest prey from more than four levels below them'],
+   c:2,ex:'Only ~10% of energy passes from one trophic level to the next. The rest is lost as heat from respiration, movement, excretion and uneaten parts. After 4-5 levels so little energy remains that it cannot support another population.'},
+  {id:'d7',tp:'Food Webs',
+   q:'In a food web, the population of foxes suddenly decreases due to disease. What is most likely to happen to the rabbit population?',
+   os:['Rabbit population decreases','Rabbit population stays the same','Rabbit population increases because less predation','Rabbit population immediately becomes extinct'],
+   c:2,ex:'With fewer foxes, less predation pressure on rabbits → rabbit population increases. This is a key food web interaction. However, increased rabbit numbers may then reduce the grass population.'},
+  {id:'d8',tp:'Food Webs',
+   q:'Why is a food web more useful than a single food chain for understanding an ecosystem?',
+   os:['Food webs are simpler to draw','Food webs show the direction of energy flow more clearly','Food webs show multiple feeding relationships and how changes to one species affect many others','Food webs always show more organisms than food chains'],
+   c:2,ex:'Food webs show all the interconnected feeding relationships in an ecosystem. Because most organisms eat several things and are eaten by several others, a web more accurately shows how a change in one population ripples through the whole community.'},
+  {id:'d9',tp:'Interdependence',
+   q:'In a predator-prey relationship, why does the predator population peak AFTER the prey population peaks?',
+   os:['Predators are slower to reproduce than prey','There must be an increase in prey numbers first to provide enough food for the predator population to grow','Predators move to different habitats when prey is scarce','Prey populations always outnumber predator populations'],
+   c:1,ex:'The predator population can only increase when there is sufficient prey to support it. First prey increases → then predators have more food → predator population rises → more predation → prey decreases. So predator peaks lag behind prey peaks.'},
+  {id:'d10',tp:'Interdependence',
+   q:'Bees collect nectar from flowers, and in doing so transfer pollen between flowers. What type of relationship is this?',
+   os:['Parasitism — the bee harms the flower','Competition — they both need nectar','Mutualism — both the bee and flower benefit','Predation — the bee consumes the flower'],
+   c:2,ex:'Mutualism: both organisms benefit. The bee benefits by getting nectar (food); the flower benefits because its pollen is transferred, enabling reproduction. Neither organism is harmed.'},
+  {id:'d11',tp:'Pyramid of Numbers',
+   q:'A food chain is: Oak tree → Caterpillars → Blue tits → Sparrowhawk. Which type of pyramid of numbers would this produce?',
+   os:['A true pyramid — widest at the bottom','An inverted pyramid — widest at the top','A rectangular shape — all levels the same','A pyramid widest in the middle'],
+   c:0,ex:'Actually this would produce an unusual shape — the oak tree (1 organism) is at the base, caterpillars (hundreds) make a wide middle level, blue tits are narrower, and sparrowhawk is at the top. The base level (1 oak) is actually narrower than the caterpillar level — this shows a key limitation of pyramids of numbers.'},
+  {id:'d12',tp:'Pyramid of Numbers',
+   q:'What is the main limitation of a pyramid of numbers compared to a pyramid of biomass?',
+   os:['Pyramids of numbers are harder to construct','Pyramids of numbers do not account for the size of organisms, so can be inverted or misleading','Pyramids of numbers show too many trophic levels','Pyramids of numbers only work for aquatic ecosystems'],
+   c:1,ex:'The key limitation is that pyramids of numbers treat all organisms equally regardless of size. One large oak tree provides the same "bar width" as one caterpillar. This can lead to inverted or distorted pyramids that are misleading about energy flow.'},
+  {id:'d13',tp:'Pyramid of Biomass',
+   q:'Which statement best explains why a pyramid of biomass is almost always a true pyramid (widest at the base)?',
+   os:['There are always more producers than consumers in number','Energy and biomass are lost at each trophic level, so less biomass is available at each higher level','Producers are always larger organisms than consumers','Consumers reproduce more slowly than producers'],
+   c:1,ex:'At each trophic level, energy is lost as heat from respiration, movement and excretion. Only ~10% is transferred to the next level. This means less biomass is available at each successive trophic level, giving a true pyramid shape regardless of organism size.'},
+  {id:'d14',tp:'Pyramid of Biomass',
+   q:'1000 kg of grass supports 100 kg of rabbits which supports 10 kg of foxes. What percentage of energy is transferred from rabbits to foxes?',
+   os:['1%','10%','90%','100%'],
+   c:1,ex:'% efficiency = (energy out ÷ energy in) × 100 = (10 ÷ 100) × 100 = 10%. This is the typical 10% efficiency of energy transfer between trophic levels.'},
+  {id:'d15',tp:'Sampling',
+   q:'A student places 10 quadrats (each 1 m²) randomly in a field. They count a total of 60 dandelion plants. What is the estimated number of dandelions per m²?',
+   os:['600','6','60','0.6'],
+   c:1,ex:'Mean per quadrat = 60 ÷ 10 = 6 plants per m². This is the estimated population density per m². To estimate total population, multiply by total area of the field.'},
+  {id:'d16',tp:'Sampling',
+   q:'In a capture-recapture study: 30 woodlice are caught and marked (n₁). Later, 40 woodlice are caught (n₂), of which 6 are marked (m). What is the estimated population?',
+   os:['76','200','7200','720'],
+   c:1,ex:'N = (n₁ × n₂) ÷ m = (30 × 40) ÷ 6 = 1200 ÷ 6 = 200 woodlice.'},
+  {id:'d17',tp:'Abiotic Factors',
+   q:'Why would a decrease in rainfall most directly affect the size of a plant population in a grassland ecosystem?',
+   os:['Plants cannot photosynthesise without rain','Reduced water availability limits plant growth and survival, reducing population size','Less rain means less light for photosynthesis','Rainfall is a biotic factor that determines plant competition'],
+   c:1,ex:'Water is essential for photosynthesis and plant cell processes. Reduced rainfall means less water available → reduced growth → plants die → population size decreases. Rainfall is an abiotic (non-living) factor.'},
+  {id:'d18',tp:'Food Chains',
+   q:'Which organism in a food chain is always the original source of energy for all other organisms?',
+   os:['The top predator','The primary consumer','The producer (green plant or alga)','The decomposer'],
+   c:2,ex:'Producers (green plants and algae) capture light energy from the Sun through photosynthesis and convert it into chemical energy stored in biomass. This is the original energy source for all other organisms in the food chain.'}
+];
+
+var FU=[
+  {id:'f1',tp:'Food Webs',
+   q:'In a food web, the grass population is devastated by disease. Describe the likely effects on THREE other organisms in the web, explaining the reasons for each change. (6 marks)',
+   model:'Any organism that eats grass (e.g. rabbits, mice) would decrease — less food available. As rabbit/mouse numbers fall, their predators (e.g. foxes, owls) would also decrease — less prey. However, if the predator eats multiple prey species, the impact might be less severe. Organisms that compete with grass for space/light may increase. Decomposers would initially increase as dead grass provides more organic material.'},
+  {id:'f2',tp:'Pyramid of Biomass',
+   q:'Explain why a pyramid of biomass is considered more accurate than a pyramid of numbers. Use an example in your answer. (4 marks)',
+   model:'A pyramid of numbers does not account for the SIZE of organisms — 1 oak tree (huge biomass) gets the same bar width as 1 caterpillar. This can produce inverted or distorted shapes. A pyramid of biomass shows the total mass of organisms at each level, so it accounts for organism size. Because energy and biomass are always lost at each trophic level (~90%), the biomass always decreases going up — so the pyramid of biomass is almost always a true pyramid shape. Example: 1 oak tree supports thousands of caterpillars — pyramid of numbers would be inverted at base; pyramid of biomass would still show a wide base (oak tree has large biomass).'},
+  {id:'f3',tp:'Interdependence',
+   q:'Describe the predator-prey relationship between lynx and snowshoe hares. Explain the cyclical changes in population size. (5 marks)',
+   model:'Hare population increases (abundant food) → lynx have more food → lynx population increases → more predation on hares → hare population decreases → less food for lynx → lynx population decreases → less predation → hare population recovers → cycle repeats. The lynx (predator) population peaks AFTER the hare (prey) population — there is a time lag because it takes time for increased food supply to lead to increased reproduction in predators. The two populations are interdependent — changes in one directly cause changes in the other.'},
+  {id:'f4',tp:'Biotic and Abiotic',
+   q:'A student investigates the distribution of water plants in a river. Suggest THREE abiotic factors and TWO biotic factors that could affect where the plants grow. (5 marks)',
+   model:'Abiotic: light intensity (plants need light for photosynthesis); water temperature (affects enzyme activity and metabolic rates); water flow speed (fast flow may uproot plants); pH of water (affects enzyme function); oxygen/CO₂ levels in water; mineral/nitrate content (affects plant growth). Biotic: competition from other aquatic plants for light, water, nutrients; grazing by herbivores (e.g. ducks, snails) that eat the plants; parasitic organisms/pathogens that cause disease; decomposers that break down dead plant material releasing nutrients.'},
+  {id:'f5',tp:'Sampling',
+   q:'A scientist wants to estimate the population of field mice in a meadow. Describe how they would use the capture-recapture method and state TWO assumptions that must be valid for the estimate to be reliable. (5 marks)',
+   model:'Method: (1) Capture a sample of mice, mark them harmlessly (e.g. ear tag/fur dye), record number (n₁). (2) Release them and allow mixing. (3) After a suitable time interval, capture another sample (n₂), count how many are marked (m). (4) Calculate population estimate: N = (n₁ × n₂) ÷ m. Assumptions: (1) The marks do not affect survival (marks do not make animals more visible to predators or cause injury). (2) No immigration or emigration during the study — population is closed. (3) Marks do not fall off. (4) Random mixing has occurred so recaptures are representative.'}
+];
+
+var ss={},ds={},fu_self={};
+
+function sp(id){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on')});
+  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('on')});
+  document.getElementById('pg-'+id).classList.add('on');
+  var m={ko:0,sa:1,dq:2,fu:3,sm:4};
+  document.querySelectorAll('.nb')[m[id]].classList.add('on');
+  window.scrollTo(0,0);
+}
+
+function bSA(){
+  var c=document.getElementById('sa-wrap');c.innerHTML='';
+  SA.forEach(function(s){
+    var d=document.createElement('div');d.className='si';
+    d.innerHTML='<p class="ss"><strong style="font-size:12px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:.05em">'+s.tp+'</strong><br><br>'+s.tx+'</p>'
+      +'<div class="sbs">'
+      +'<button class="sb" onclick="setSA(\''+s.id+'\',\'g\',this)">✓ Confident</button>'
+      +'<button class="sb" onclick="setSA(\''+s.id+'\',\'a\',this)">~ Unsure</button>'
+      +'<button class="sb" onclick="setSA(\''+s.id+'\',\'r\',this)">✗ Not yet</button>'
+      +'</div>';
+    c.appendChild(d);
+  });
+}
+
+function setSA(id,v,btn){
+  ss[id]=v;
+  btn.parentElement.querySelectorAll('button').forEach(function(b){b.className='sb'});
+  btn.classList.add(v==='g'?'sg':v==='a'?'sam':'sr');
+}
+
+function bDQ(){
+  var c=document.getElementById('dq-wrap');c.innerHTML='';
+  DQ.forEach(function(q,i){
+    var d=document.createElement('div');d.className='qb';
+    var h='<p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">'+q.tp+' · Q'+(i+1)+' of '+DQ.length+'</p>'
+      +'<p class="qt">'+q.q+'</p>';
+    q.os.forEach(function(o,j){
+      h+='<button class="ob" onclick="chkD(\''+q.id+'\','+j+','+q.c+',this,\'fb-'+q.id+'\')">'+String.fromCharCode(65+j)+') '+o+'</button>';
+    });
+    h+='<div class="fb" id="fb-'+q.id+'"></div>';
+    d.innerHTML=h;c.appendChild(d);
+  });
+}
+
+function chkD(qid,ch,co,btn,fbid){
+  btn.parentElement.querySelectorAll('.ob').forEach(function(b){b.disabled=true});
+  var fb=document.getElementById(fbid);fb.classList.add('on');
+  var q=DQ.filter(function(x){return x.id===qid})[0];
+  if(ch===co){
+    btn.classList.add('oc');fb.className='fb on fbc';
+    fb.innerHTML='<strong>Correct!</strong> '+q.ex;ds[qid]=true;
+  } else {
+    btn.classList.add('ow');
+    btn.parentElement.querySelectorAll('.ob')[co].classList.add('orc');
+    fb.className='fb on fbw';
+    fb.innerHTML='<strong>Incorrect.</strong> '+q.ex;ds[qid]=false;
+  }
+}
+
+function bFU(){
+  var c=document.getElementById('fu-wrap');c.innerHTML='';
+  FU.forEach(function(q,i){
+    var d=document.createElement('div');d.className='card';d.style.marginBottom='16px';
+    d.innerHTML='<p style="font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">'+q.tp+' · Question '+(i+1)+' of '+FU.length+'</p>'
+      +'<p style="font-size:14px;font-weight:600;margin-bottom:12px;line-height:1.55;color:#1a1a1a">'+q.q+'</p>'
+      +'<p style="font-size:13px;color:#666;margin-bottom:6px">Write your answer on paper, then rate how well your answer matches the model answer below.</p>'
+      +'<div id="ma-'+q.id+'" style="display:none;background:#f9f9f9;border-left:4px solid #22c55e;border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#444;line-height:1.7;margin-bottom:10px"><strong>Model answer:</strong><br>'+q.model+'</div>'
+      +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">'
+      +'<button class="ckb" onclick="toggleMA(\'ma-'+q.id+'\',this)">Show model answer</button>'
+      +'<span style="font-size:13px;color:#666;margin-left:4px">Then rate yourself:</span>'
+      +'<button class="sb" onclick="setFU(\''+q.id+'\',\'g\',this)">✓ Got it</button>'
+      +'<button class="sb" onclick="setFU(\''+q.id+'\',\'a\',this)">~ Partly</button>'
+      +'<button class="sb" onclick="setFU(\''+q.id+'\',\'r\',this)">✗ Missed it</button>'
+      +'</div>';
+    c.appendChild(d);
+  });
+}
+
+function toggleMA(id,btn){
+  var el=document.getElementById(id);
+  if(el.style.display==='none'){el.style.display='block';btn.textContent='Hide model answer';}
+  else{el.style.display='none';btn.textContent='Show model answer';}
+}
+
+function setFU(id,v,btn){
+  fu_self[id]=v;
+  btn.parentElement.querySelectorAll('.sb').forEach(function(b){b.className='sb'});
+  btn.classList.add(v==='g'?'sg':v==='a'?'sam':'sr');
+}
+
+function bs(){
+  var dT=DQ.length,dR=Object.values(ds).filter(function(v){return v}).length;
+  var fuG=Object.values(fu_self).filter(function(v){return v==='g'}).length;
+  var fuA=Object.values(fu_self).filter(function(v){return v==='a'}).length;
+  var fuR=Object.values(fu_self).filter(function(v){return v==='r'}).length;
+  var saG=Object.values(ss).filter(function(v){return v==='g'}).length;
+  var saA=Object.values(ss).filter(function(v){return v==='a'}).length;
+  var saR=Object.values(ss).filter(function(v){return v==='r'}).length;
+  var pct=Math.round(dR/dT*100);
+  var col=pct>=70?'#166534':pct>=50?'#92400e':'#991b1b';
+  var bg=pct>=70?'#dcfce7':pct>=50?'#fef3c7':'#fee2e2';
+  var lbl=pct>=70?'Great work! Keep it up.':pct>=50?'Good progress — keep revising.':'Needs more revision — use the KO to review.';
+
+  var topics=[
+    {lb:'Ecosystems, habitats and definitions',si:['s1','s2'],di:['d1'],fu:[]},
+    {lb:'Biotic factors',si:['s3'],di:['d2'],fu:['f4']},
+    {lb:'Abiotic factors',si:['s4'],di:['d3','d17'],fu:['f4']},
+    {lb:'Food chains — structure and energy',si:['s6','s7'],di:['d4','d5','d6','d18'],fu:[]},
+    {lb:'Food webs — interpretation',si:['s8','s9'],di:['d7','d8'],fu:['f1']},
+    {lb:'Interdependence — predator-prey and relationships',si:['s10','s11'],di:['d9','d10'],fu:['f3']},
+    {lb:'Pyramid of numbers',si:['s12','s13'],di:['d11','d12'],fu:[]},
+    {lb:'Pyramid of biomass and energy efficiency',si:['s14','s15','s16'],di:['d13','d14'],fu:['f2']},
+    {lb:'Sampling methods and capture-recapture',si:['s17','s18'],di:['d15','d16'],fu:['f5']}
+  ];
+
+  var rows='';var strong=[];var weak=[];var developing=[];
+  topics.forEach(function(t){
+    var seen={};var qr=[];
+    t.di.forEach(function(id){if(!seen[id]&&ds[id]!==undefined){seen[id]=1;qr.push(ds[id])}});
+    var fuVals=t.fu.map(function(id){return fu_self[id]}).filter(Boolean);
+    var sv=t.si.map(function(id){return ss[id]}).filter(Boolean);
+    var qp=qr.length?qr.filter(function(v){return v}).length/qr.length:null;
+    var st,pc;
+    if(qp!==null){
+      if(qp>=0.75){st='Strong';pc='pig';}
+      else if(qp>=0.5){st='Developing';pc='pia';}
+      else{st='Needs work';pc='pir';}
+    } else if(sv.length&&sv.every(function(v){return v==='g'})){st='Self-confident';pc='pig';}
+    else if(sv.some(function(v){return v==='r'})){st='Needs work';pc='pir';}
+    else if(sv.some(function(v){return v==='a'})){st='Developing';pc='pia';}
+    else{st='Not yet assessed';pc='pia';}
+    rows+='<div class="tr2"><span style="font-size:14px">'+t.lb+'</span><span class="pill '+pc+'">'+st+'</span></div>';
+    if(st==='Strong'||st==='Self-confident')strong.push(t.lb);
+    else if(st==='Developing')developing.push(t.lb);
+    if(st==='Needs work')weak.push(t.lb);
+  });
+
+  var html='<div class="g3" style="margin-bottom:16px">'
+    +'<div class="stat-card"><div class="stat-label">MCQ correct</div><div class="stat-val">'+dR+'/'+dT+'</div></div>'
+    +'<div class="stat-card"><div class="stat-label">MCQ score</div><div class="stat-val" style="color:'+col+'">'+pct+'%</div></div>'
+    +'<div class="stat-card" style="background:'+bg+'"><div class="stat-label">Result</div><div style="font-size:13px;font-weight:700;color:'+col+';margin-top:6px;line-height:1.4">'+lbl+'</div></div>'
+    +'</div>'
+    +'<div class="g3" style="margin-bottom:16px">'
+    +'<div class="stat-card"><div class="stat-label">Self-assessment</div><div style="margin-top:6px">'
+    +'<span class="pill pig" style="display:block;margin-bottom:4px;text-align:center">'+saG+' confident</span>'
+    +'<span class="pill pia" style="display:block;margin-bottom:4px;text-align:center">'+saA+' unsure</span>'
+    +'<span class="pill pir" style="display:block;text-align:center">'+saR+' not yet</span></div></div>'
+    +'<div class="stat-card"><div class="stat-label">Follow-up Qs</div><div style="margin-top:6px">'
+    +'<span class="pill pig" style="display:block;margin-bottom:4px;text-align:center">'+fuG+' got it</span>'
+    +'<span class="pill pia" style="display:block;margin-bottom:4px;text-align:center">'+fuA+' partly</span>'
+    +'<span class="pill pir" style="display:block;text-align:center">'+fuR+' missed</span></div></div>'
+    +'<div class="stat-card"><div class="stat-label">Skills rated</div><div class="stat-val">'+Object.keys(ss).length+'/'+SA.length+'</div></div>'
+    +'</div>'
+    +'<div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px">Topic-by-topic breakdown</div>'
+    +'<div class="card">'+rows+'</div>';
+
+  if(strong.length){html+='<div class="card c-green" style="margin-top:12px"><h3 style="color:#166534;margin-bottom:6px">Topics you know well</h3><p style="font-size:13px;color:#444">'+strong.join(' &nbsp;·&nbsp; ')+'</p></div>';}
+  if(developing.length){html+='<div class="card c-amber" style="margin-top:12px"><h3 style="color:#92400e;margin-bottom:6px">Topics to consolidate</h3><p style="font-size:13px;color:#444">'+developing.join(' &nbsp;·&nbsp; ')+'</p></div>';}
+  if(weak.length){html+='<div class="card c-red" style="margin-top:12px"><h3 style="color:#991b1b;margin-bottom:6px">Priority areas to revise</h3><p style="font-size:13px;color:#444">'+weak.join(' &nbsp;·&nbsp; ')+'</p><p style="font-size:13px;color:#666;margin-top:8px">Return to the Knowledge Organiser, re-read those sections, then retry the questions.</p></div>';}
+  if(!strong.length&&!weak.length&&!developing.length&&dR===0){html+='<div class="card c-amber" style="margin-top:12px"><p style="font-size:13px;color:#444">Complete the self-assessment and questions first to see your personalised breakdown.</p></div>';}
+  html+='<div style="text-align:center;margin-top:24px"><button class="ab" onclick="sp(\'ko\')">Review Knowledge Organiser →</button></div>';
+  document.getElementById('sm-wrap').innerHTML=html;
+}
+
+bSA();bDQ();bFU();
+</script>
+</body>
+</html>
